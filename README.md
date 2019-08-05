@@ -83,3 +83,12 @@ When working on a feature, you might end up with multiple commits which should b
 7. You may need to fix conflicts at this point
 8. continue the rebase after any conflict resolution
 9. Done!
+
+## [Reword a previous commit](#reword-previous-commit)
+1. `git log` - count the position of you commit in history.  e.g., if it's the 3rd commit, note that number
+2. `git rebase -i HEAD~X` where X is the number from the previous step
+3. Find commit in the list and change the word `pick` to `reword` or `r`
+4. Save/Quit vi
+5. vi will now be reopened with the commit message of the selected commit.  Edit it and save the changes
+6. `git rebase --continue` when satisfied, continue the rebase
+7. Done!
