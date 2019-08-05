@@ -68,4 +68,7 @@ When working on a feature, you might end up with multiple commits which should b
 5. Save and exit vi
 6. Your commits are now squashed! Since you rewrote history, you will need to force push the branch if you've already pushed to origin
 
-
+## [Amending a commit](#amending-commits)
+* `git commit --amend` - amend a commit and update the commit message
+* `git commit --amend --no-edit` - amend a commit (perhaps add files/changes) but don't change the commit message
+* `git commit --amend --reset-author` - amend a commut and update the message and author
