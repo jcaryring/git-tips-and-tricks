@@ -15,7 +15,7 @@ This approach allows the developer to have incremental commits during feature de
 
 1. `git checkout develop`
 2. `git pull`
-3. `git checkout -b APP-XXXX` (use your story/bug number as branch name
+3. `git checkout -b APP-XXXX` (use your story/bug number as branch name)
 4. Start work on your feature
 5. `git add .` then `git commit -m 'APP-XXXX: Description of work'`
 6. repeat steps 4-5 as work progresses.  Pushing to remote is a good idea here as well `git push` or, if pushing for the first time, `git push origin HEAD -u`
@@ -25,17 +25,24 @@ This approach allows the developer to have incremental commits during feature de
 10. Open PR - **PRO TIP**: The first time you push to origin, the command line output will contain a link to open a PR in github
 
 ## New Feature (ammend as you go approach)
-This approach allows a developer to keep feature work in one commit without the hassle of an interactive rebase when work is complete.
+This approach allows a developer to keep feature work in one commit without the hassle of an interactive rebase when work is complete.  *This approach might be difficult if you have multiple developers working in the same feature branch.*
 
 *NOTE: It is also possible to use a combination of squash/ammend approaches*
 
 1. `git checkout develop`
 2. `git pull`
-3. `git checkout -b APP-XXXX` (use your story/bug number as branch name
+3. `git checkout -b APP-XXXX` (use your story/bug number as branch name)
 4. Start work on your feature
 5. `git add .` then `git commit -m 'APP-XXXX: Description of work'`
-6. repeat steps 4-5 as work progresses.  Pushing to remote is a good idea here as well `git push` or, if pushing for the first time, `git push origin HEAD -u`
-7. `git log` When work is complete, inspect commits in the local branch and decide which should be kept and which should be squashed
-8. Use interactive rebase to squash commits (see interactive rebase section)
-9. `git push origin HEAD -u` push to origin (or, `git push` if you've already pushed and set remote)
-10. Open PR - **PRO TIP**: The first time you push to origin, the command line output will contain a link to open a PR in github
+6. As work progresses, ammend your commit with the new work. `git add .` followed by `git commit --amend --no-edit`
+7. `git push origin HEAD -u` push to origin regularly.  If you've ammended a commit, a force push will be necessary `git push origin HEAD -f`
+8. Open PR - **PRO TIP**: The first time you push to origin, the command line output will contain a link to open a PR in github
+
+### Important Note
+This approach is very conventient, but there is a downside.  If multiple team members are working in the feature branch, it will be necessary to reset local branches from origin after force pushes occur. 
+**Here's how that would work:**
+1. Person A force pushes for to APP-XXXX
+2. Person B has local work in APP-XXXX but is not up to date with changes from Person A
+3. Person B fetches `git fetch`
+4. Person B rebases their local APP-XXXX on the remote APP-XXXX branch `git rebase origin/APP-XXXX`
+5. Person B fixes and conflicts and is ready to continue work
