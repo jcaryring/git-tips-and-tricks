@@ -46,3 +46,13 @@ This approach is very conventient, but there is a downside.  If multiple team me
 3. Person B fetches `git fetch`
 4. Person B rebases their local APP-XXXX on the remote APP-XXXX branch `git rebase origin/APP-XXXX`
 5. Person B fixes and conflicts and is ready to continue work
+
+## How to rebase your feature branch
+1. `git fetch` - this downloads all remote changes but does not do a merge/etc like `git pull`
+2. `git checkout APP-XXX` - checkout feature branch
+3. `git rebase origin/develop` - perform the rebase
+4. At this point, you might have merge conflicts.  Git will tell you this.  
+** If you have conflicts, fix them with `git mergetool`
+** `git rebase --continue` Once you've addressed merge conflicts, continue the rebase.  You may have to fix more conflicts along the way
+** **NOTE** `git status` will tell you if the rebase is still in progress.  If you are using zsh, you will see the branch name becomes a hash during the rebase.  This will change back to the branch name when the rebase is complete
+5. `git push origin HEAD -f` Force push to remote (or if you haven't pushed yet, `git push origin HEAD -u`)
