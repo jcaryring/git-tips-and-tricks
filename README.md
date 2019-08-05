@@ -72,3 +72,14 @@ When working on a feature, you might end up with multiple commits which should b
 * `git commit --amend` - amend a commit and update the commit message
 * `git commit --amend --no-edit` - amend a commit (perhaps add files/changes) but don't change the commit message
 * `git commit --amend --reset-author` - amend a commut and update the message and author
+
+## [Add/change a previous commit](#add-change-previous-commit)
+1. `git log` - count the position of you commit in history.  e.g., if it's the 3rd commit, note that number
+2. `git rebase -i HEAD~X` where X is the number from the previous step
+3. Find commit in the list and change the word `pick` to `edit` or `e`
+4. Save/Quit vi
+5. At this point the history is rolled back to the selected commit.  Make any changes you'd like to the commit
+6. `git rebase --continue` when satisfied, continue the rebase
+7. You may need to fix conflicts at this point
+8. continue the rebase after any conflict resolution
+9. Done!
