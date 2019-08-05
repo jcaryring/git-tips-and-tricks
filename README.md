@@ -59,6 +59,16 @@ As you work in a feature branch, other work may be commited to the base branch w
 ** **NOTE** `git status` will tell you if the rebase is still in progress.  If you are using zsh, you will see the branch name becomes a hash during the rebase.  This will change back to the branch name when the rebase is complete
 5. `git push origin HEAD -f` Force push to remote (or if you haven't pushed yet, `git push origin HEAD -u`)
 
+## [Alternative to Rebase (for difficult merge issues)](#rebase-alternative)
+Sometimes, if you are very out of date with teh base branch and lots of work has happened, fixing conflicts during a rebase can be very time consuming.  Rebasing works by rolling back to a shared commit between branches and sequentially applying commits in order.  Because of this, you may end up resolving unnecessary conflicts.  To work around this, you can use an alternative, cherry-pick based approach.  This works best on branches with very few or just one commit of new work.
+1. `git log` - copy the commit hash(es) for relevant branch work to a note app
+2. `git fetch` - ensure you've downloaded all up-to-date repo data
+3. `git reset --hard origin/BASE-BRANCH-NAME` - replace `BASE-BRANCH-NAME` with your base branch name.  This is likely `develop`
+4. `git cherry-pick XXXXXXXXX` replace `XXXXXXXXX` with the hash noted above
+5. Resolve any conflicts
+6. Repeat steps 4-5 for additional commits
+7. Done!
+
 ## [Squash Commits - Interactive Rebase](#interactive-rebase-squash-commits)
 When working on a feature, you might end up with multiple commits which should be consolidated into one.  To do this, use the interactive rebase feature.
 1. `git log` In the log, identify which commit you will keep and which will be squashed
