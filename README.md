@@ -109,3 +109,6 @@ When working on a feature, you might end up with multiple commits which should b
 Show commits that are new to a branch.  Useful to see what new commits are in a release compared with the last release
 
 `git log --cherry-pick --oneline --no-merges --left-only release-v3.7.0...release-v3.8.0`
+
+## [List Branches Containing Commit](#list-branches-containing-commit)
+`git branch --contains <hash>`
