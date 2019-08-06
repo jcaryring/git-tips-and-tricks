@@ -102,3 +102,10 @@ When working on a feature, you might end up with multiple commits which should b
 5. vi will now be reopened with the commit message of the selected commit.  Edit it and save the changes
 6. `git rebase --continue` when satisfied, continue the rebase
 7. Done!
+
+# Reading History
+
+## [Compare Branches](#compare-branches)
+Show commits that are new to a branch.  Useful to see what new commits are in a release compared with the last release
+
+`git log --cherry-pick --oneline --no-merges --left-only release-v3.7.0...release-v3.8.0`
